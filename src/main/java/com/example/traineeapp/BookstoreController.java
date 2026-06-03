@@ -45,4 +45,20 @@ public class BookstoreController {
 
         return "The bookstore does not carry a book with ID " + id;
     }
+
+    @GetMapping("/lowStockReport")
+    public String lowStockReport(@RequestParam int threshold) {
+
+        String report = "";
+        for (InventoryBook book : books) {
+            if (book.getStock() <= threshold) {
+                report += "Title: " + book.getTitle() + ", Stock: " + book.getStock() + "\n";
+            }
+        }
+        if (report.isEmpty()) {
+            return "No books currently need reordering.";
+        }
+
+        return report;
+    }
 }
