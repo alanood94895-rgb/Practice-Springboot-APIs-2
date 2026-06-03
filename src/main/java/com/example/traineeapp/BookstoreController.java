@@ -10,7 +10,7 @@ public class BookstoreController {
     private static List<InventoryBook> inventory = new ArrayList<>();
 
 
-    @GetMapping("/add-inventory-book")
+    @GetMapping("/addInventoryBook")
     public String addInventoryBook(
             @RequestParam int bookId,
             @RequestParam String title,
