@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.traineeapp.LibraryController.authorList;
+import static com.example.traineeapp.LibraryController.bookList;
+
 @RestController
 public class BookController {
     private static List<Book> books = new ArrayList<>();
@@ -59,6 +62,29 @@ public class BookController {
         }
 
         return "Sorry, that book ID is not available.";
+    }
+
+    @GetMapping("/add-relational-book")
+    public String addRelationalBook(
+            @RequestParam int id,
+            @RequestParam String name,
+            @RequestParam int authorId) {
+
+        boolean authorExists = false;
+        for (Author a : authorList) {
+            if (a.getId() == authorId) {
+                authorExists = true;
+                break;
+            }
+        }
+
+        if (authorExists) {
+            Book book = new Book(id, name, authorId);
+            bookList.add(book);
+            return "Book added successfully!";
+        }
+
+        return "Error: Author ID " + authorId + " does not exist. Book not added.";
     }
 }
 
