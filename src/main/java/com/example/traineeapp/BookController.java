@@ -27,6 +27,17 @@ public class BookController {
         return books;
 
     }
+    @GetMapping("/find-by-id")
+    public Book findById(
+            @RequestParam int id) {
+
+        for (Book b : books) {
+            if (b.getId() == id) {
+                return b;
+            }
+        }
+        return null;
+    }
 }
 
 
