@@ -4,6 +4,9 @@ public class Book {
     Integer id;
     String name;
 
+    public Book(int id, String name) {
+    }
+
     public Integer getId() {
         return id;
     }
