@@ -31,14 +31,9 @@ public class BookstoreController {
             if (book.getBookId() == id) {
 
                 if (book.getStock() > 0) {
-                    return "Book Available! Title: "
-                            + book.getTitle()
-                            + ", Price: $"
-                            + book.getPrice();
+                    return "Book Available! Title: " + book.getTitle() + ", Price: $" + book.getPrice();
                 } else {
-                    return "Sorry, the book '"
-                            + book.getTitle()
-                            + "' is sold out.";
+                    return "Sorry, the book '" + book.getTitle() + "' is sold out.";
                 }
             }
         }
