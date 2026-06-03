@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class BookController {
 
-    @GetMapping("/add-book")
+    @GetMapping("/addBook")
     public String addBook(
             @RequestParam int id,
             @RequestParam String name,
@@ -21,12 +21,12 @@ public class BookController {
         return "Book added successfully!";
     }
 
-    @GetMapping("/all-books")
+    @GetMapping("/allBooks")
     public List<Book> getAllBooks() {
         return LibraryController.bookList;
     }
 
-    @GetMapping("/find-by-id")
+    @GetMapping("/findById")
     public Book findById(@RequestParam int id) {
 
         for (Book b : LibraryController.bookList) {
@@ -37,7 +37,7 @@ public class BookController {
         return null;
     }
 
-    @GetMapping("/find-by-name")
+    @GetMapping("/findByName")
     public Book findByName(@RequestParam String name) {
 
         for (Book b : LibraryController.bookList) {
@@ -48,7 +48,7 @@ public class BookController {
         return null;
     }
 
-    @GetMapping("/search-msg")
+    @GetMapping("/searchMsg")
     public String searchWithMessage(@RequestParam int id) {
 
         for (Book b : LibraryController.bookList) {
