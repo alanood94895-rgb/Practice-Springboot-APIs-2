@@ -2,10 +2,12 @@ package com.example.traineeapp;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RestController
 public class BookstoreController {
     private static List<InventoryBook> inventory = new ArrayList<>();
     private List<InventoryBook> books = new ArrayList<>();
