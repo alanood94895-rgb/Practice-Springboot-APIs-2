@@ -14,7 +14,7 @@ public class LibraryController {
     public static List<Book> bookList = new ArrayList<>();
 
 
-    @GetMapping("/add-author")
+    @GetMapping("/addAuthor")
     public String addAuthor(
             @RequestParam int id,
             @RequestParam String name,
@@ -26,12 +26,12 @@ public class LibraryController {
         return "Author added successfully!";
     }
 
-    @GetMapping("/all-authors")
+    @GetMapping("/allAuthors")
     public List<Author> getAllAuthors() {
         return authorList;
     }
 
-    @GetMapping("/author-report")
+    @GetMapping("/authorReport")
     public String authorReport(
             @RequestParam String authorName) {
 
