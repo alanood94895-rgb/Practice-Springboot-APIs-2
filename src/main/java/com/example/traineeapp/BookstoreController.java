@@ -9,8 +9,8 @@ import java.util.List;
 
 @RestController
 public class BookstoreController {
-    private static List<InventoryBook> inventory = new ArrayList<>();
-    private List<InventoryBook> books = new ArrayList<>();
+
+    private static List<InventoryBook> books = new ArrayList<>();
 
     @GetMapping("/addInventoryBook")
     public String addInventoryBook(
@@ -20,42 +20,47 @@ public class BookstoreController {
             @RequestParam int stock) {
 
         InventoryBook book = new InventoryBook(bookId, title, price, stock);
-        BookstoreController.inventory.add(book);
+        books.add(book);
 
-        return "Book added to inventory successfully!";
+        return "Book added successfully!";
     }
 
     @GetMapping("/checkStock")
     public String checkStock(@RequestParam int id) {
-
         for (InventoryBook book : books) {
-
             if (book.getBookId() == id) {
-
                 if (book.getStock() > 0) {
-                    return "Book Available! Title: " + book.getTitle() + ", Price: $" + book.getPrice();
+                    return "Book Available! Title: " + book.getTitle()
+                            + ", Price: $" + book.getPrice();
                 } else {
                     return "Sorry, the book '" + book.getTitle() + "' is sold out.";
                 }
             }
         }
 
-        return "The bookstore does not carry a book with ID " + id;
+        return "No book found with ID " + id;
     }
 
     @GetMapping("/lowStockReport")
-    public String lowStockReport(@RequestParam int threshold) {
 
-        String report = "";
+    public String lowStockReport(
+            @RequestParam
+            int threshold) {
+        StringBuilder report = new StringBuilder();
         for (InventoryBook book : books) {
             if (book.getStock() <= threshold) {
-                report += "Title: " + book.getTitle() + ", Stock: " + book.getStock() + "\n";
+                report.append("Title: ")
+                        .append(book.getTitle())
+                        .append(", Stock: ")
+                        .append(book.getStock())
+                        .append("\n");
             }
         }
-        if (report.isEmpty()) {
+
+        if (report.length() == 0) {
             return "No books currently need reordering.";
         }
 
-        return report;
+        return report.toString();
     }
 }
