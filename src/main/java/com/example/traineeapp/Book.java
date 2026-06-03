@@ -1,17 +1,22 @@
 package com.example.traineeapp;
 
 public class Book {
-    Integer id;
-    String name;
 
-    public Book(int id, String name) {
+    private int id;
+    private String name;
+    private int authorId;
+
+    public Book(int id, String name, int authorId) {
+        this.id = id;
+        this.name = name;
+        this.authorId = authorId;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -21,5 +26,13 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 }
